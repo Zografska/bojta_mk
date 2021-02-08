@@ -1,8 +1,9 @@
-package service;
+package com.example.bojta_mk.service;
 
-import model.Category;
-import model.Product;
-import model.Shape;
+
+import com.example.bojta_mk.model.Category;
+import com.example.bojta_mk.model.Product;
+import com.example.bojta_mk.model.Shape;
 
 import javax.persistence.OneToOne;
 

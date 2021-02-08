@@ -1,8 +1,10 @@
-package model;
+package com.example.bojta_mk.model;
 
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.List;
 
 @Data

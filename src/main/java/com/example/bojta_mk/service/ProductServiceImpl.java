@@ -1,11 +1,10 @@
-package service.impl;
+package com.example.bojta_mk.service;
 
-import model.Category;
-import model.Product;
-import model.Shape;
+import com.example.bojta_mk.model.Category;
+import com.example.bojta_mk.model.Product;
+import com.example.bojta_mk.model.Shape;
 import org.springframework.stereotype.Service;
-import repository.ProductRepository;
-import service.ProductService;
+import com.example.bojta_mk.repository.ProductRepository;
 
 @Service
 public class ProductServiceImpl implements ProductService {

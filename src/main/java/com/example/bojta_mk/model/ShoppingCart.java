@@ -1,9 +1,10 @@
-package model;
+package com.example.bojta_mk.model;
 
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
+
 @Data
 @Entity
 public class ShoppingCart {

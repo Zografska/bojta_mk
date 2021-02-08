@@ -1,4 +1,4 @@
-package model;
+package com.example.bojta_mk.model;
 
 import lombok.Data;
 

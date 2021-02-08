@@ -1,8 +1,7 @@
-package service.impl;
+package com.example.bojta_mk.service;
 
-import model.Shape;
-import repository.ShapeRepository;
-import service.ShapeService;
+import com.example.bojta_mk.model.Shape;
+import com.example.bojta_mk.repository.ShapeRepository;
 
 import java.util.List;
 

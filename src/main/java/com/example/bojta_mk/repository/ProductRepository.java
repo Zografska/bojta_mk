@@ -1,6 +1,6 @@
-package repository;
+package com.example.bojta_mk.repository;
 
-import model.Product;
+import com.example.bojta_mk.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

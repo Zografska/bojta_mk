@@ -1,4 +1,5 @@
-package web.controller;
+package com.example.bojta_mk.web;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -6,13 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/products")
-public class ProductController {
-    //TODO: Plan out Products main page
-    //TODO: Create mappings for different product categories
-
+@RequestMapping(value = {"/", "/home"})
+public class HomeController {
     @GetMapping
-    public String getProductsPage(Model model){
+    public String getHomePage(Model model){
         model.addAttribute("bodyContent", "home");
         return "master.html";
     }
