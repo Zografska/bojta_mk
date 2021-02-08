@@ -2,9 +2,7 @@ package model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 
 @Data
@@ -12,8 +10,9 @@ import javax.persistence.OneToOne;
 public class Product {
     @Id
     String id;
+    @Enumerated(EnumType.STRING)
     Category category;
-    @OneToOne
+    @ManyToOne
     Shape shape;
     String name;
     String description;
