@@ -1,10 +1,13 @@
-package com.example.bojta_mk.service;
+package com.example.bojta_mk.service.impl;
 
 import com.example.bojta_mk.model.Shape;
 import com.example.bojta_mk.repository.ShapeRepository;
+import com.example.bojta_mk.service.ShapeService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ShapeServiceImpl implements ShapeService {
     private final ShapeRepository shapeRepository;
 

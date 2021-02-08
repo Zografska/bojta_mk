@@ -1,8 +1,9 @@
-package com.example.bojta_mk.service;
+package com.example.bojta_mk.service.impl;
 
 import com.example.bojta_mk.model.Category;
 import com.example.bojta_mk.model.Product;
 import com.example.bojta_mk.model.Shape;
+import com.example.bojta_mk.service.ProductService;
 import org.springframework.stereotype.Service;
 import com.example.bojta_mk.repository.ProductRepository;
 
