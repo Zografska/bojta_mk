@@ -1,0 +1,14 @@
+<section class="jumbotron text-center" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products Page</title>
+</head>
+<body>
+    <ul>
+        <th:block th:each="category:${categories}" >
+            <!--TODO: Fix link to list categories-->
+            <li><a href="/products" th:text="${category.toString()}"></a> </li>
+        </th:block>
+    </ul>
+</body>
+</section>>
