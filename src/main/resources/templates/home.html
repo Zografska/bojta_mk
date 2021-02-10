@@ -3,5 +3,14 @@
 </head>
 <body>
 Welcome to Bojta Home page
+
+
+<!--Our Posts-->
+<dl>
+    <p th:each="post:${posts}">
+    <dt  th:text="${post.headline}"></dt>
+    <dd th:text="${post.description}">-</dd>
+    </p>
+</dl>
 </body>
 </section>
