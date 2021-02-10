@@ -23,4 +23,16 @@ public class PostServiceImpl implements PostService {
     public Post create(String headline, String description) {
         return postRepository.save(new Post(headline,description));
     }
+
+    @Override
+    public Post delete(Long id) {
+        Post post = findPost(id);
+        postRepository.delete(post);
+        return post;
+    }
+
+    @Override
+    public Post findPost(Long id) {
+        return postRepository.findById(id).get();
+    }
 }
