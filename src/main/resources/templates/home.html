@@ -3,5 +3,24 @@
 </head>
 <body>
 Welcome to Bojta Home page
+
+
+<!--Our Posts-->
+<dl>
+    <p th:each="post:${posts}">
+    <dt  th:text="${post.headline}"></dt>
+    <dd th:text="${post.description}"></dd>
+
+<!--    <form th:action="@{'/post/delete/{id}' (id=${post.id})}"-->
+<!--    th:method="DELETE">-->
+<!--    <button type="submit"-->
+<!--            class="btn btn-sm btn-danger delete-product">-->
+<!--        <i class="fa fa-trash">Delete</i>-->
+<!--    </button>-->
+<!--    </form>-->
+
+    </p>
+</dl>
+<a href="/post" type="button">Додади пост</a>
 </body>
 </section>
