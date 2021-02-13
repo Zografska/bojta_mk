@@ -1,5 +1,6 @@
 package com.example.bojta_mk.model;
 
+import com.example.bojta_mk.model.enumerations.Status;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @ManyToMany
-    List<Product> productList;
+    List<OrderItem> productList;
     @ManyToOne
     User user;
     @Enumerated
@@ -21,7 +22,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(List<Product> productList, User user, Status status) {
+    public Order(List<OrderItem> productList, User user, Status status) {
         this.productList = productList;
         this.user = user;
         this.status = status;

@@ -1,7 +1,8 @@
-package com.example.bojta_mk.service;
+package com.example.bojta_mk.service.impl;
 
 import com.example.bojta_mk.model.Post;
 import com.example.bojta_mk.repository.PostRepository;
+import com.example.bojta_mk.service.PostService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

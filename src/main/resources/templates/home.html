@@ -21,6 +21,8 @@ Welcome to Bojta Home page
 
     </p>
 </dl>
-<a href="/post" type="button">Додади пост</a>
+<th:block sec:authorize="hasRole('ROLE_ADMIN')">
+    <a href="/post" type="button">Додади пост</a>
+</th:block>
 </body>
 </section>

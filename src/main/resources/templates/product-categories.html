@@ -7,8 +7,10 @@
     <ul>
         <th:block th:each="category:${categories}" >
             <!--TODO: Fix link to list categories-->
-            <li><a href="/products" th:text="${category.toString()}"></a> </li>
+            <li><a th:href="@{'/product-categories/{cat}' (cat=${category})}" th:text="${category}"></a> </li>
         </th:block>
     </ul>
+
+    <button ></button>
 </body>
 </section>>

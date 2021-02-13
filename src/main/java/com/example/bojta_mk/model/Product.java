@@ -1,5 +1,6 @@
 package com.example.bojta_mk.model;
 
+import com.example.bojta_mk.model.enumerations.Category;
 import lombok.Data;
 
 import javax.persistence.*;

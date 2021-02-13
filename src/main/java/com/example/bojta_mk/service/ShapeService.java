@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface ShapeService {
     Shape create(String name, List<String> dimensions);
+    List<Shape> findAll();
+    Shape findById(String name);
 }

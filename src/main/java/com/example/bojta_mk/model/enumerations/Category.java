@@ -1,4 +1,4 @@
-package com.example.bojta_mk.model;
+package com.example.bojta_mk.model.enumerations;
 
 // Category klasa ili enum?
 public enum Category {

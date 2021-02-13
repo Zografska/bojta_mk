@@ -1,17 +1,23 @@
 package com.example.bojta_mk.model;
 
+import com.example.bojta_mk.model.enumerations.ShoppingCartStatus;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class ShoppingCart {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @ManyToMany
-    List<Product> productList;
+    List<OrderItem> productList;
     @ManyToOne
     User user;
     @Enumerated(EnumType.STRING)
@@ -20,8 +26,9 @@ public class ShoppingCart {
     public ShoppingCart() {
     }
 
-    public ShoppingCart(List<Product> productList, User user) {
-        this.productList = productList;
+    public ShoppingCart(User user) {
+        this.productList = new ArrayList<>();
         this.user = user;
+        this.status = ShoppingCartStatus.ACTIVE;
     }
 }

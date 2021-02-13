@@ -1,11 +1,14 @@
 package com.example.bojta_mk.service.impl;
 
-import com.example.bojta_mk.model.Category;
+import com.example.bojta_mk.model.enumerations.Category;
 import com.example.bojta_mk.model.Product;
 import com.example.bojta_mk.model.Shape;
+import com.example.bojta_mk.model.exeptions.ProductNotFoundException;
 import com.example.bojta_mk.service.ProductService;
 import org.springframework.stereotype.Service;
 import com.example.bojta_mk.repository.ProductRepository;
+
+import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -18,5 +21,25 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product create(String id, Category category, Shape shape, String name, String description) {
         return productRepository.save(new Product(id,category,shape,name,description));
+    }
+
+    @Override
+    public Product findById(String id) {
+        return this.productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+    }
+
+    @Override
+    public List<Product> findByCategory(Category category) {
+        return this.productRepository.findByCategory(category);
+    }
+
+    @Override
+    public void deleteById(String id) {
+        this.productRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Product> findAll() {
+        return this.productRepository.findAll();
     }
 }
