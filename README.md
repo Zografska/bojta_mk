@@ -13,9 +13,9 @@ Tasks:
 
 - confirm order od shopping cart da otide vo order.[jakov]
 - koga ima product u shopping cart na user i adminot saka da go izbrise, se narusuva referential integrity. Treba da go razmislime toa.[jakov]
--Kontakt formata sho ke prakja mejl direktno na kontakt za konkretno prashanje [zogra]
--Generiranje pdf za potvrduvanje na narackata+prakjanje po mejl [jakov]
--Povrzeme so postgre baza[togetherrrr]
+- Kontakt formata sho ke prakja mejl direktno na kontakt za konkretno prashanje [zogra]
+- Generiranje pdf za potvrduvanje na narackata+prakjanje po mejl [jakov]
+- Povrzeme so postgre baza[togetherrrr]
 
 [ne sea]
 Parsiranje eksel podatokot vo proektot - jakov
