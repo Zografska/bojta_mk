@@ -4,13 +4,10 @@
     <title>Products Page</title>
 </head>
 <body>
-    <ul>
-        <th:block th:each="category:${categories}" >
-            <!--TODO: Fix link to list categories-->
-            <li><a th:href="@{'/product-categories/{cat}' (cat=${category})}" th:text="${category}"></a> </li>
-        </th:block>
-    </ul>
-
-    <button ></button>
+<dl>
+    <p th:each="category:${categories}">
+        <dt ><a type="button" class="btn btn-info btn-lg btn-block" th:href="@{'/product-categories/{cat}' (cat=${category})}" th:text="${category}"></a> </dt>
+    </p>
+</dl>
 </body>
 </section>>

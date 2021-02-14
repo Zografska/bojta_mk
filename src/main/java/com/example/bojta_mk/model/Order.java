@@ -8,6 +8,7 @@ import java.util.List;
 
 @Data
 @Entity
+@Table(name = "ordersTable")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
