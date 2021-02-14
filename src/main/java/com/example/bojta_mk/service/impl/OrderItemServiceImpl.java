@@ -31,7 +31,7 @@ public class OrderItemServiceImpl implements OrderItemService {
 
     @Override
     public OrderItem create(Product p, String dimension) {
-        return this.orderItemRepository.save(new OrderItem(p, dimension));
+        return this.orderItemRepository.save(new OrderItem(p, dimension,1));
     }
 
     @Override

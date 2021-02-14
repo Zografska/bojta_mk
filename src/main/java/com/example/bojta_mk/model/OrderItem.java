@@ -16,10 +16,12 @@ public class OrderItem {
     Product product;
 
     String dimension;
+    int quantity;
 
-    public OrderItem(Product product, String dimension) {
+    public OrderItem(Product product, String dimension, int quantity) {
         this.product = product;
         this.dimension = dimension;
+        this.quantity= quantity;
     }
 
     public OrderItem() {

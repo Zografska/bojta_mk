@@ -1,15 +1,18 @@
 <section class="jumbotron text-center" xmlns:th="http://www.thymeleaf.org">
+    <style>
+        p{
+            margin-bottom: 15px;
+        }
+    </style>
     <head>
         <meta charset="UTF-8">
         <title>Products Page</title>
     </head>
     <body>
+    <th:block sec:authorize="!isAuthenticated()">
+        <p class="text-danger bg-light" >За да додадете продукт во кошничка потребно е да се најавите <a href="/login">тука!</a> </p>
+    </th:block>
     <ul>
-<!--        <th:block th:each="product:${products}" >-->
-<!--            &lt;!&ndash;TODO: Fix link to list categories&ndash;&gt;-->
-<!--            <li><a th:href="@{'/product-categories/{cat}/{id}' (id=${product.getId()}, cat=${category})}" th:text="${product.getName()}"></a> </li>-->
-
-<!--        </th:block>-->
 
         <div class="container mb-4">
             <div class="row">
@@ -41,7 +44,7 @@
                                 <td class="text-right">
                                     <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                                         <form th:action="@{'/product-categories/{cat}/delete/{id}' (id=${product.getId()}, cat=${category})}" th:method="DELETE">
-                                            <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash">Delete</i></button>
+                                            <button type="submit" onclick="return confirm('Дали сте сигурни дека сакате да го избришете продуктот?');" class="btn btn-sm btn-danger"><i class="fa fa-trash">Delete</i></button>
                                         </form>
                                     </th:block>
                                     <th:block sec:authorize="hasRole('ROLE_ADMIN')">
