@@ -26,7 +26,6 @@ public class User implements UserDetails {
     String phone;
     String password;
     @Column(unique = true)
-    String email;
 
     @Transient
     private boolean isAccountNonExpired = true;
@@ -46,14 +45,13 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String email,String username, String password, String name, String surname, String phone, Role role) {
+    public User(String username, String password, String name, String surname, String phone, Role role) {
         this.username = username;
         this.password= password;
         this.name = name;
         this.surname = surname;
         this.phone = phone;
         this.role = role;
-        this.email=email;
     }
 
     @Override

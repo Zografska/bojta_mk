@@ -42,8 +42,8 @@ public class DataInitializer {
         dimensions2.add(dimension2);
         Shape shape2 = shapeService.create("rectangle", dimensions2);
 
-        User admin =  this.userService.register("admin@mail","admin", "admin", "admin", "Jakov", "Mitrovski", "124343", Role.ROLE_ADMIN);
-        User user = this.userService.register("user@mail","user", "user", "user", "Jakov123", "Jakov123", "12345", Role.ROLE_USER);
+        User admin =  this.userService.register("admin", "admin", "admin", "Jakov", "Mitrovski", "124343", Role.ROLE_ADMIN);
+        User user = this.userService.register("user", "user", "user", "Jakov123", "Jakov123", "12345", Role.ROLE_USER);
         for (int i = 1; i < 6; i++) {
             productService.create("200."+i, Category.opasnost,shape,
                     "Opasnost na pat"+i,"Description za opasnoast na pat"+i);

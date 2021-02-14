@@ -3,6 +3,7 @@ package com.example.bojta_mk.service.impl;
 import com.example.bojta_mk.model.User;
 import com.example.bojta_mk.model.enumerations.Role;
 import com.example.bojta_mk.model.exeptions.InvalidArgumentsException;
+import com.example.bojta_mk.model.exeptions.InvalidUserCredentialsException;
 import com.example.bojta_mk.model.exeptions.PasswordsDoNotMatchException;
 import com.example.bojta_mk.model.exeptions.UsernameAlreadyExistsException;
 import com.example.bojta_mk.repository.UserRepository;
@@ -29,7 +30,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User register(String email, String username, String password, String repeatPassword, String name, String surname, String phone, Role role) {
+    public User login(String username, String password) {
+        if (username == null || username.isEmpty() || password == null || password.isEmpty()){
+            throw new InvalidArgumentsException();
+        }
+        return userRepository.findByUsernameAndPassword(username, password)
+                .orElseThrow(InvalidUserCredentialsException::new);
+    }
+
+    @Override
+    public User register(String username, String password, String repeatPassword, String name, String surname, String phone, Role role) {
         if (username == null || username.isEmpty() || password == null || password.isEmpty()){
             throw new InvalidArgumentsException();
         }
@@ -43,7 +53,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         if (this.userRepository.findByUsername(username).isPresent())
             throw new UsernameAlreadyExistsException(username);
 
-        User user = new User( email, username, passwordEncoder.encode(password), name, surname, phone, role);
+        User user = new User( username, passwordEncoder.encode(password), name, surname, phone, role);
         return userRepository.save(user);
     }
 

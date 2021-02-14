@@ -1,0 +1,39 @@
+<div class="container" xmlns:th="http://www.thymeleaf.org">
+    <h1 th:if="${hasError}" th:text="${error}"></h1>
+</div>
+<div class="container">
+    <form class="form-signin mt-xl-5" method="post" action="/register">
+        <h2 class="form-signin-heading">Register</h2>
+        <p>
+            <label for="username" class="sr-only">Е-mail</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="E-mail" required=""
+                   autofocus="">
+        </p>
+        <p>
+            <label for="password" class="sr-only">Лозинка</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                   required="">
+        </p>
+        <p>
+            <label for="repeatedPassword" class="sr-only">Лозинка за потврда</label>
+            <input type="password" id="repeatedPassword" name="repeatedPassword" class="form-control"
+                   placeholder="Repeat Password" required="">
+        </p>
+        <p>
+            <label for="name" class="sr-only">Име</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Име" required="" autofocus="">
+        </p>
+        <p>
+            <label for="surname" class="sr-only">Презиме</label>
+            <input type="text" id="surname" name="surname" class="form-control" placeholder="Презиме" required=""
+                   autofocus="">
+        </p>
+        <p>
+            <label for="phone" class="sr-only">Телефон</label>
+            <input type="text" id="phone" name="phone" class="form-control" placeholder="Телефон" required=""
+                   autofocus="">
+        </p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Регистрација</button>
+    </form>
+    Имате профил? Најавете се <a href="/login">тука</a>
+</div>
