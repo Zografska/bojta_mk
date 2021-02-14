@@ -77,4 +77,11 @@ public class ShoppingCartController {
         }
     }
 
+    @PostMapping("/quantity/{id}")
+    public String editProduct(@PathVariable Long id,
+                              @RequestParam int quantity)
+    {
+        orderItemService.editQuantity(id,quantity);
+        return "redirect:/cart";
+    }
 }

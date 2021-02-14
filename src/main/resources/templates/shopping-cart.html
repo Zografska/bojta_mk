@@ -34,7 +34,10 @@
                                 ? ${product.getProduct().getShape().getName()} : 'No Shape'"></td>
                             <td th:text="${product.getDimension()}"></td>
                             <td>
-                                <input type="number" min="1" max="100" th:value="${product.quantity}">
+                                <form th:action="@{'/cart/quantity/{id}' (id=${product.getId()})}" th:method="POST">
+                                <input type="number"  name="quantity" min="1" max="100" th:value="${product.quantity}">
+                                    <input type="submit" class="btn btn-outline-success" value="Зачувај" >
+                                </form>
                             </td>
                             <td class="text-right">
                                 <th:block sec:authorize="hasRole('ROLE_USER')">

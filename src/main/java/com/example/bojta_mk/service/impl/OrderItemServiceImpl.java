@@ -43,4 +43,12 @@ public class OrderItemServiceImpl implements OrderItemService {
     public void deleteById(Long id) {
         this.orderItemRepository.deleteById(id);
     }
+
+    @Override
+    public OrderItem editQuantity(Long id, int quantity) {
+        OrderItem orderItem = findById(id);
+        orderItem.setQuantity(quantity);
+        orderItemRepository.save(orderItem);
+        return orderItem;
+    }
 }

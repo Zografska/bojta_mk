@@ -12,4 +12,5 @@ public interface OrderItemService {
     OrderItem create(Product p, String dimension);
     Optional<OrderItem> findByProductAndDimension(Product p, String dimension);
     void deleteById(Long id);
+    OrderItem editQuantity(Long id, int quantity);
 }
