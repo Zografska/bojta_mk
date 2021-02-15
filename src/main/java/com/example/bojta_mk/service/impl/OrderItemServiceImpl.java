@@ -35,8 +35,8 @@ public class OrderItemServiceImpl implements OrderItemService {
     }
 
     @Override
-    public Optional<OrderItem> findByProductAndDimension(Product p, String dimension) {
-        return this.orderItemRepository.findByProductAndDimension(p, dimension);
+    public Optional<OrderItem> findByProductAndDimensionAndQuantity(Product p, String dimension, int quantity) {
+        return this.orderItemRepository.findByProductAndDimensionAndQuantity(p, dimension, quantity);
     }
 
     @Override

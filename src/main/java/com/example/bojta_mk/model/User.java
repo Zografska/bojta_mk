@@ -25,7 +25,6 @@ public class User implements UserDetails {
     String username;
     String phone;
     String password;
-    @Column(unique = true)
 
     @Transient
     private boolean isAccountNonExpired = true;

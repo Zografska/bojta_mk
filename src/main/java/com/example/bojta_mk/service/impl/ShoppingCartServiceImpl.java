@@ -80,5 +80,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         shoppingCart.getProductList().remove(orderItem);
         return this.shoppingCartRepository.save(shoppingCart);
     }
+
+    @Override
+    public ShoppingCart deactivateConfirmedShoppingCart(Long id) {
+        ShoppingCart shoppingCart = this.shoppingCartRepository.findById(id).orElseThrow(() -> new ShoppingCartNotFoundException(id));
+        shoppingCart.setStatus(ShoppingCartStatus.INACTIVE);
+        return this.shoppingCartRepository.save(shoppingCart);
+    }
 }
 

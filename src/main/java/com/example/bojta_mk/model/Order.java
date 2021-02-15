@@ -1,6 +1,6 @@
 package com.example.bojta_mk.model;
 
-import com.example.bojta_mk.model.enumerations.Status;
+import com.example.bojta_mk.model.enumerations.OrderStatus;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,19 +13,17 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    @ManyToMany
-    List<OrderItem> productList;
-    @ManyToOne
-    User user;
+    @OneToOne
+    ShoppingCart shoppingCart;
+
     @Enumerated
-    Status status;
+    OrderStatus orderStatus;
 
     public Order() {
     }
 
-    public Order(List<OrderItem> productList, User user, Status status) {
-        this.productList = productList;
-        this.user = user;
-        this.status = status;
+    public Order(ShoppingCart shoppingCart, OrderStatus orderStatus) {
+        this.shoppingCart = shoppingCart;
+        this.orderStatus = orderStatus;
     }
 }

@@ -1,11 +1,10 @@
 package com.example.bojta_mk.web;
 
-import com.example.bojta_mk.model.OrderItem;
-import com.example.bojta_mk.model.Product;
-import com.example.bojta_mk.model.ShoppingCart;
-import com.example.bojta_mk.service.OrderItemService;
-import com.example.bojta_mk.service.ProductService;
-import com.example.bojta_mk.service.ShoppingCartService;
+import com.example.bojta_mk.model.*;
+import com.example.bojta_mk.model.enumerations.OrderStatus;
+import com.example.bojta_mk.service.*;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +19,13 @@ public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
     private final ProductService productService;
     private final OrderItemService orderItemService;
+    private final OrderService orderService;
 
-    public ShoppingCartController(ShoppingCartService shoppingCartService, ProductService productService, OrderItemService orderItemService) {
+    public ShoppingCartController(ShoppingCartService shoppingCartService, ProductService productService, OrderItemService orderItemService, OrderService orderService) {
         this.shoppingCartService = shoppingCartService;
         this.productService = productService;
         this.orderItemService = orderItemService;
+        this.orderService = orderService;
     }
 
     @GetMapping
@@ -53,14 +54,24 @@ public class ShoppingCartController {
         try{
             String username = req.getRemoteUser();
             Product product = this.productService.findById(id);
-            if (this.orderItemService.findByProductAndDimension(product, dimension).isEmpty())
-                this.orderItemService.create(product, dimension);
+            OrderItem orderItem = this.orderItemService.create(product, dimension);
 
-            Long orderItemId = this.orderItemService.findByProductAndDimension(product, dimension).get().getId();
-
-            this.shoppingCartService.addProductToShoppingCart(username, orderItemId);
+            this.shoppingCartService.addProductToShoppingCart(username, orderItem.getId());
             return "redirect:/cart";
         }catch (RuntimeException e){
+            return "redirect:/cart?error=" + e.getMessage();
+        }
+    }
+
+    @PostMapping("/confirm-order")
+    public String confirmOrder(HttpServletRequest req){
+        try{
+            String username = req.getRemoteUser();
+            ShoppingCart shoppingCart = this.shoppingCartService.getActiveShoppingCart(username);
+            this.orderService.create(shoppingCart, OrderStatus.TO_COMPLETE);
+            
+            return "redirect:/order-sent";
+        }catch(RuntimeException e){
             return "redirect:/cart?error=" + e.getMessage();
         }
     }

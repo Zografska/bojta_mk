@@ -10,7 +10,7 @@ public interface OrderItemService {
     List<OrderItem> findAll();
     OrderItem findById(Long id);
     OrderItem create(Product p, String dimension);
-    Optional<OrderItem> findByProductAndDimension(Product p, String dimension);
+    Optional<OrderItem> findByProductAndDimensionAndQuantity(Product p, String dimension, int quantity);
     void deleteById(Long id);
     OrderItem editQuantity(Long id, int quantity);
 }

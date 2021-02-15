@@ -44,12 +44,23 @@
                                     <form th:action="@{'/cart/delete/{id}' (id=${product.getId()})}" th:method="DELETE">
                                         <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Дали сте сигурни дека сакате да го избришете продуктот?');"><i class="fa fa-trash">Избриши</i></button>
                                     </form>
-                            </th:block>
+                                </th:block>
                             </td>
 
                         </tr>
                         </tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+        <div class="col mb-3">
+            <div class="row">
+                <div class="col-sm-12 col-md-12">
+                    <th:block th:if="${orderItems.size() > 0}" sec:authorize="hasRole('ROLE_USER')">
+                        <form th:action="@{'/cart/confirm-order'}"  th:method="POST">
+                            <button type="submit" class="btn btn-block btn-dark" onclick="return confirm('Дали сте сигурни дека сакате да ја испратите нарачката?');"><i>Испрати нарачка</i></button>
+                        </form>
+                    </th:block>
                 </div>
             </div>
         </div>
