@@ -3,8 +3,6 @@ package com.example.bojta_mk.web;
 import com.example.bojta_mk.model.*;
 import com.example.bojta_mk.model.enumerations.OrderStatus;
 import com.example.bojta_mk.service.*;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +18,14 @@ public class ShoppingCartController {
     private final ProductService productService;
     private final OrderItemService orderItemService;
     private final OrderService orderService;
+    private final MailService mailService;
 
-    public ShoppingCartController(ShoppingCartService shoppingCartService, ProductService productService, OrderItemService orderItemService, OrderService orderService) {
+    public ShoppingCartController(ShoppingCartService shoppingCartService, ProductService productService, OrderItemService orderItemService, OrderService orderService, MailService mailService) {
         this.shoppingCartService = shoppingCartService;
         this.productService = productService;
         this.orderItemService = orderItemService;
         this.orderService = orderService;
+        this.mailService = mailService;
     }
 
     @GetMapping
@@ -68,6 +68,7 @@ public class ShoppingCartController {
         try{
             String username = req.getRemoteUser();
             ShoppingCart shoppingCart = this.shoppingCartService.getActiveShoppingCart(username);
+
             this.orderService.create(shoppingCart, OrderStatus.TO_COMPLETE);
             
             return "redirect:/order-sent";

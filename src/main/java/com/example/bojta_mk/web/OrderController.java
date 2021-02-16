@@ -2,6 +2,7 @@ package com.example.bojta_mk.web;
 
 import com.example.bojta_mk.model.Order;
 import com.example.bojta_mk.model.ShoppingCart;
+import com.example.bojta_mk.service.MailService;
 import com.example.bojta_mk.service.OrderService;
 import com.example.bojta_mk.service.PdfGeneratorService;
 import com.example.bojta_mk.service.ShoppingCartService;
@@ -22,11 +23,13 @@ public class OrderController {
     private final OrderService orderService;
     private final ShoppingCartService shoppingCartService;
     private final PdfGeneratorService pdfGeneratorService;
+    private final MailService mailService;
 
-    public OrderController(OrderService orderService, ShoppingCartService shoppingCartService, PdfGeneratorService pdfGeneratorService) {
+    public OrderController(OrderService orderService, ShoppingCartService shoppingCartService, PdfGeneratorService pdfGeneratorService, MailService mailService) {
         this.orderService = orderService;
         this.shoppingCartService = shoppingCartService;
         this.pdfGeneratorService = pdfGeneratorService;
+        this.mailService = mailService;
     }
 
     @GetMapping
@@ -35,15 +38,20 @@ public class OrderController {
         String username = req.getRemoteUser();
         ShoppingCart shoppingCart = this.shoppingCartService.getActiveShoppingCart(username);
         Order order = this.orderService.findByShoppingCart(shoppingCart);
+
+        String email = shoppingCart.getUser().getUsername();
+        String name = shoppingCart.getUser().getName();
+        Long id = order.getId();
+
         this.shoppingCartService.deactivateConfirmedShoppingCart(shoppingCart.getId());
 
         try {
             pdfGeneratorService.init(order);
+            this.mailService.sendOrderMail(name, id);
+            model.addAttribute("bodyContent", "order-sent");
+            return "master";
         }catch (FileNotFoundException | DocumentException e){
             return "redirect:/order-sent?error=" + e.getMessage();
         }
-
-        model.addAttribute("bodyContent", "order-sent");
-        return "master";
     }
 }

@@ -45,6 +45,7 @@ public class PdfGeneratorServiceImpl implements PdfGeneratorService {
         String customerName = order.getShoppingCart().getUser().getName();
         String customerSurname = order.getShoppingCart().getUser().getSurname();
         String customerNumber = order.getShoppingCart().getUser().getPhone();
+        String customerAddress = order.getShoppingCart().getUser().getUsername();
 
 
         Document document = new Document();
@@ -53,20 +54,24 @@ public class PdfGeneratorServiceImpl implements PdfGeneratorService {
         document.open();
 
         Font font_title = FontFactory.getFont(FontFactory.TIMES_ROMAN, 22, BaseColor.BLACK);
-        Chunk chunk1 = new Chunk("      Order from " + customerName + " " + customerSurname, font_title);
-        document.add(chunk1);
+        Chunk chunk = new Chunk("      Order from " + customerName + " " + customerSurname, font_title);
+        document.add(chunk);
 
         document.add(new Paragraph("\n"));
 
         Font font_random_row = FontFactory.getFont(FontFactory.TIMES_ROMAN, 16, BaseColor.BLACK);
-        Chunk chunk3 = new Chunk("  Telephone number: " + customerNumber, font_random_row);
-        document.add(chunk3);
+        chunk = new Chunk("  Telephone number: " + customerNumber, font_random_row);
+        document.add(chunk);
 
         document.add(new Paragraph("\n"));
 
+        chunk = new Chunk("  e-mail address: " + customerAddress, font_random_row);
+        document.add(chunk);
 
-        Chunk chunk2 = new Chunk("  The order consists of the following products: ", font_random_row);
-        document.add(chunk2);
+        document.add(new Paragraph("\n"));
+
+        chunk = new Chunk("  The order consists of the following products: ", font_random_row);
+        document.add(chunk);
 
         document.add(new Paragraph("\n"));
 
