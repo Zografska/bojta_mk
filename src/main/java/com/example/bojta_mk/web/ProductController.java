@@ -98,4 +98,13 @@ public class ProductController {
         this.productService.deleteById(id);
         return "redirect:/product-categories/{cat}";
     }
+    @GetMapping("/search")
+    public String searchProductsPage(@RequestParam String str, Model model){
+        model.addAttribute("bodyContent", "concrete-category");
+        List<Product> products = productService.findByNameOrId(str);
+        model.addAttribute("category", "all");
+        model.addAttribute("products", products);
+        model.addAttribute("search", true);
+        return "master.html";
+    }
 }

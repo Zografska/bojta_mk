@@ -13,4 +13,5 @@ public interface ProductService {
     List<Product> findByCategory(Category category);
     void deleteById(String id);
     List<Product> findAll();
+    List<Product> findByNameOrId(String str);
 }

@@ -26,6 +26,12 @@
                     <a class="nav-link" href="/zaNas">За Нас</a>
                 </li>
             </ul>
+
+            <form th:action="@{'/product-categories/search'}" th:method="get" class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" name="str" placeholder="Search..." aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
             <ul class="nav navbar-nav navbar-right">
                 <th:block sec:authorize="hasRole('ROLE_USER')">
                     <li ><a type="button" class="btn btn-outline-success" href="/cart">Кошничка</a></li>
@@ -41,10 +47,7 @@
                     </a>
                 </th:block>
             </ul>
-<!--            <form class="form-inline my-2 my-lg-0">-->
-<!--                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-<!--                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-<!--            </form>-->
+
         </div>
     </nav>
 

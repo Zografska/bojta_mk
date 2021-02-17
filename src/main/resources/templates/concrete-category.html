@@ -12,6 +12,14 @@
     <th:block sec:authorize="!isAuthenticated()">
         <p class="text-danger bg-light" >За да додадете продукт во кошничка потребно е да се најавите <a href="/login">тука!</a> </p>
     </th:block>
+
+    <hr>
+
+    <th:block th:if="${search}">
+        <th:block th:if="${products.size() == 0}">
+            <p>Не постои бараниот продукт</p>
+        </th:block>
+    </th:block>
     <ul>
 
         <div class="container mb-4">

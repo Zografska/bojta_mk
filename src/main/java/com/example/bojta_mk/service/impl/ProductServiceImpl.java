@@ -42,4 +42,10 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findAll() {
         return this.productRepository.findAll();
     }
+
+    @Override
+    public List<Product> findByNameOrId(String str) {
+        str="%"+str+"%";
+        return productRepository.findByNameLikeOrIdLike(str,str);
+    }
 }
