@@ -1,20 +1,27 @@
 <div class="container" xmlns:th="http://www.thymeleaf.org">
-    <form class="form-signin mt-xl-5" method="post" action="/login">
-        <h2 class="form-signin-heading">Sign in</h2>
-        <p>
-            <label for="username" class="sr-only">Корисничко име:</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required=""
+
+    <div class="main">
+    <form class="form-signin mt-xl-5"  method="post" action="/login">
+
+        <h2 class="form-signin-heading">Најава</h2>
+        <hr>
+        <br>
+        <div class="form-group row">
+            <label for="username" class="col-sm-2">E-mail:</label>
+            <input type="text" id="username" name="username" class="form-control col-sm-4" placeholder="E-mail" required=""
                    autofocus="">
-        </p>
-        <p>
-            <label for="password" class="sr-only">Лозинка:</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+        </div>
+        <div class="form-group row">
+            <label for="password" class="col-sm-2"  >Лозинка:</label>
+            <input type="password" id="password" name="password" class="form-control col-sm-4" placeholder="Password"
                    required="">
-        </p>
+        </div>
 
         <div th:text="${param.error}" class="text-danger"></div>
-
-        <button id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Најави се</button>
+        <br>
+        <button id="submit" class="btn btn-primary  btn-block" type="submit">Најави се</button>
     </form>
+        <hr>
     <a href="/register" class="btn btn-block btn-light">Регистрирајте се тука</a>
+    </div>
 </div>

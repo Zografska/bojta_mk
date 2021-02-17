@@ -1,9 +1,16 @@
-<section class="jumbotron text-center" xmlns:th="http://www.thymeleaf.org">
+<section class="jumbotron text-center container " xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Products Page</title>
+    <title>Каталог</title>
 </head>
 <body>
+<h2>Каталог</h2>
+
+<!--
+TODO: Add Download link for pdf file- да може да се симне каталогот и правилникот
+<p>Официјалниот каталог може да го најдете <a href="/templates/fragments/pdf" download="bojta.pdf">тука</a></p>
+<p>Официјалниот правилник може да го најдете <a href="/templates/fragments/pdf" download="bojta.pdf">тука</a></p>
+-->
 <dl>
     <p th:each="category:${categories}">
         <dt ><a type="button" class="btn btn-info btn-lg btn-block" th:href="@{'/product-categories/{cat}' (cat=${category})}" th:text="${category}"></a> </dt>
