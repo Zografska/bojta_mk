@@ -24,4 +24,9 @@ public class HomeController {
         model.addAttribute("posts", postService.listAll());
         return "master.html";
     }
+    @GetMapping("/zaNas")
+    public String getZaNasPage(Model model){
+        model.addAttribute("bodyContent", "zaNas");
+        return "master.html";
+    }
 }
