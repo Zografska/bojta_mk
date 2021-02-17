@@ -1,14 +1,19 @@
+<style>
+    h2{
+        margin-bottom: 50px;
+    }
+</style>
 <section class="jumbotron container text-center" xmlns:th="http://www.thymeleaf.org">
     <title>Дома</title>
 <body>
-Добродојдовте
+<h2>Добредојдовте</h2>
 
 
 <!--Our Posts-->
-<dl>
-    <p th:each="post:${posts}">
-    <dt  th:text="${post.headline}"></dt>
-    <dd th:text="${post.description}"></dd>
+<!--<dl>-->
+<!--    <p th:each="post:${posts}">-->
+<!--    <dt  th:text="${post.headline}"></dt>-->
+<!--    <dd th:text="${post.description}"></dd>-->
 
 <!--    <form th:action="@{'/post/delete/{id}' (id=${post.id})}"-->
 <!--    th:method="DELETE">-->
@@ -18,8 +23,23 @@
 <!--    </button>-->
 <!--    </form>-->
 
-    </p>
-</dl>
+<!--    </p>-->
+<!--</dl>-->
+
+<div class="container">
+    <div class="row" th:each="post:${posts}">
+        <div class="col-sm" >
+            <img src="/templates/myw3schoolsimage.jpg" height="50" width="50"/>
+        </div>
+        <div class="col-sm">
+            <h5 th:text="${post.headline}"></h5>
+            <p  class="text-left" th:text="${post.description}"></p>
+        </div>
+
+    </div>
+</div>
+
+
 <th:block sec:authorize="hasRole('ROLE_ADMIN')">
     <a href="/post" type="button">Додади пост</a>
 </th:block>
