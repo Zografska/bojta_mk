@@ -30,6 +30,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public User findByUsername(String name) {
+        return userRepository.findByUsername(name).orElseThrow(() -> new UsernameNotFoundException(name));
+    }
+
+    @Override
     public User login(String username, String password) {
         if (username == null || username.isEmpty() || password == null || password.isEmpty()){
             throw new InvalidArgumentsException();

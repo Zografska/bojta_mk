@@ -63,6 +63,17 @@ public class MailServiceImpl implements MailService {
         return message;
     }
 
+    private Message createContactMessage(String mailTo, String body) throws MessagingException {
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));
+        message.setRecipients(Message.RecipientType.TO,
+                InternetAddress.parse(mailTo));
+        message.setSubject("Прашање");
+        message.setText(body);
+        return message;
+    }
+
+
     @Override
     public void sendOrderMail(String name, Long id) {
 
@@ -83,6 +94,24 @@ public class MailServiceImpl implements MailService {
             e.printStackTrace();
         } finally {
             file.delete();
+        }
+    }
+
+    @Override
+    public void sendQuestion(String body) {
+
+        try {
+            //set config and create session
+            setProperties();
+
+            //create message
+            Message message = this.createContactMessage("aleksndra2@gmail.com", body);
+
+            //send message
+            Transport.send(message);
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
         }
     }
 }

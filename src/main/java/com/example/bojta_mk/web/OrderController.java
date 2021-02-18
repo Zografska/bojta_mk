@@ -10,6 +10,7 @@ import com.itextpdf.text.DocumentException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -32,7 +33,7 @@ public class OrderController {
         this.mailService = mailService;
     }
 
-    @GetMapping
+
     public String getOrderSentPage(@RequestParam(required = false) String error, HttpServletRequest req, Model model){
 
         String username = req.getRemoteUser();
@@ -54,4 +55,6 @@ public class OrderController {
             return "redirect:/order-sent?error=" + e.getMessage();
         }
     }
-}
+
+
+    }
