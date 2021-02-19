@@ -16,15 +16,14 @@ public class Product {
     @ManyToOne
     Shape shape;
     String name;
-    String description;
+
 
     public Product() {
     }
-    public Product(String id, Category category, Shape shape, String name, String description) {
+    public Product(String id, Category category, Shape shape, String name) {
         this.id = id;
         this.category = category;
         this.shape = shape;
         this.name = name;
-        this.description = description;
     }
 }

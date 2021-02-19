@@ -1,11 +1,9 @@
 package com.example.bojta_mk.model;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
 @Entity
@@ -14,6 +12,8 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String headline;
+    @Column(columnDefinition = "text")
+    @Type(type = "text")
     String description;
 
     public Post(String headline, String description) {

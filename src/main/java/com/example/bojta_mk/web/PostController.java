@@ -1,5 +1,6 @@
 package com.example.bojta_mk.web;
 
+import com.example.bojta_mk.model.Post;
 import com.example.bojta_mk.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,11 +28,18 @@ public class PostController {
 
         return "redirect:/home";
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("delete/{id}")
     public  String DeletePost(@PathVariable Long id)
     {
         postService.delete(id);
 
         return "redirect:/home";
+    }
+    @GetMapping("/details/{id}")
+    public String getPostDetails(@PathVariable Long id, Model model){
+        Post post = postService.findPost(id);
+        model.addAttribute("post",post);
+        model.addAttribute("bodyContent","concrete-post");
+        return "master.html";
     }
 }

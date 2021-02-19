@@ -2,40 +2,41 @@
     h2{
         margin-bottom: 50px;
     }
+    .row{
+        margin: 10px;
+    }
+    .post {
+        width:200px;
+        height: 200px;
+        overflow:hidden
+    }
 </style>
-<section class="jumbotron container text-center" xmlns:th="http://www.thymeleaf.org">
+<section class="jumbotron small-middle-container text-center" xmlns:th="http://www.thymeleaf.org">
     <title>Дома</title>
 <body>
 <h2>Добредојдовте</h2>
-
-
-<!--Our Posts-->
-<!--<dl>-->
-<!--    <p th:each="post:${posts}">-->
-<!--    <dt  th:text="${post.headline}"></dt>-->
-<!--    <dd th:text="${post.description}"></dd>-->
-
-<!--    <form th:action="@{'/post/delete/{id}' (id=${post.id})}"-->
-<!--    th:method="DELETE">-->
-<!--    <button type="submit"-->
-<!--            class="btn btn-sm btn-danger delete-product">-->
-<!--        <i class="fa fa-trash">Delete</i>-->
-<!--    </button>-->
-<!--    </form>-->
-
-<!--    </p>-->
-<!--</dl>-->
-
 <div class="container">
     <div class="row" th:each="post:${posts}">
         <div class="col-sm" >
-            <img src="myw3schoolsimage.png" height="142" width="104" alt="img"/>
+            <img src="https://i.insider.com/5c5dd439dde867479d106cc2?width=1100&format=jpeg&auto=webp" height="205" width="205" alt="img"/>
+        </div>
+        <div class="col-sm post">
+            <h5><a th:href="@{'/post/details/{id}' (id=${post.getId()})}" th:text="${post.headline}"></a></h5>
+
+            <p  class="text-left" th:text="${post.description}">
+            </p>
+<!-- TODO: Add dots if description is too long
+<th:block th:if="*{#strings.length(post.description)>50}" th:text="..."></th:block>-->
         </div>
         <div class="col-sm">
-            <h5 th:text="${post.headline}"></h5>
-            <p  class="text-left" th:text="${post.description}"></p>
+                <form th:action="@{'/post/delete/{id}' (id=${post.id})}"
+                th:method="DELETE">
+                <button type="submit"
+                        class="btn btn-sm btn-danger delete-product">
+                    <i class="fa fa-trash">Delete</i>
+                </button>
+                </form>
         </div>
-
     </div>
 </div>
 
