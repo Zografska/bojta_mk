@@ -88,7 +88,7 @@ public class ProductController {
                               @RequestParam Category category,
                               @RequestParam String shape){
         Shape s = this.shapeService.findById(shape);
-        this.productService.create(id, category, s, name, description);
+        this.productService.create(id, category, s, name);
         return "redirect:/product-categories";
     }
 

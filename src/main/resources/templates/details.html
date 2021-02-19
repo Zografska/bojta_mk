@@ -1,8 +1,8 @@
-<div xmlns:th="http://www.thymeleaf.org" class="container">
+<div xmlns:th="http://www.thymeleaf.org" class="small-middle-container">
     <th:block>
         <section class="jumbotron text-center">
         <div class="container">
-            <h3>DETAILS</h3>
+            <h3>Детали за продуктот</h3>
         </div>
         </section>
 
@@ -11,7 +11,7 @@
             <div class="col-md-5">
                 <form th:action="@{'/cart/add/{id}' (id=${product.getId()})}" th:method="POST">
                     <div class="form-group">
-                        <label for="id">Product ID</label>
+                        <label for="id">ID</label>
                         <input type="text"
                                class="form-control"
                                id="id"
@@ -20,7 +20,7 @@
                                disabled>
                     </div>
                     <div class="form-group">
-                        <label for="name">Product name</label>
+                        <label for="name">Име на продуктот</label>
                         <input type="text"
                                class="form-control"
                                id="name"
@@ -29,17 +29,7 @@
                                disabled>
                     </div>
                     <div class="form-group">
-                        <label for="description">Description</label>
-                        <input type="text"
-                               class="form-control"
-                               id="description"
-                               name="description"
-                               th:value="(${product} != null ? ${product.getDescription()} : '')"
-                               disabled>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="category">Category</label>
+                        <label for="category">Категорија</label>
                         <input type="text"
                                class="form-control"
                                id="category"
@@ -48,7 +38,7 @@
                                disabled>
                     </div>
                     <div class="form-group">
-                        <label for="shape">Shape</label>
+                        <label for="shape">Форма на знак</label>
                         <input type="text"
                                class="form-control"
                                id="shape"
@@ -57,7 +47,7 @@
                                disabled>
                     </div>
                     <div>
-                        <label>Dimension</label>
+                        <label>Димензија</label>
                         <select name="dimension" class="form-control">
                             <option th:if="${product} != null"
                                     th:each="dim : ${product.getShape().getDimensions()}"
@@ -66,8 +56,8 @@
                             </option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Add to Cart</button>
-                    <a type="button" class="btn btn-primary" th:href="@{'/product-categories/{cat}' (cat=${category})}">Back</a>
+                    <button type="submit" class="btn btn-primary">Додај во кошничка</button>
+                    <a type="button" class="btn btn-primary" th:href="@{'/product-categories/{cat}' (cat=${category})}">Назад</a>
                 </form>
             </div>
         </div>
