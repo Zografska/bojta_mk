@@ -1,14 +1,14 @@
-<section class="jumbotron text-center container" xmlns:th="http://www.thymeleaf.org">
+<section class="jumbotron text-center small-middle-container" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <title>Add Post</title>
-    <h1>Add Post</h1>
+    <title>Нова статија</title>
+    <h1>Додај статија</h1>
 </head>
 <body>
     <form action="/post" method="POST" >
         <div class="form-group">
-            <label for="headline">Headline</label>
+            <label for="headline">Поглавје</label>
             <input type="text"
                    class="form-control"
                    id="headline"
@@ -17,7 +17,7 @@
                    placeholder="Enter headline">
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
+            <label for="description">Опис</label>
             <textarea rows="10" cols="30"
                    class="form-control"
                    id="description"

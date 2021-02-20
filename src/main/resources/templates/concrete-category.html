@@ -1,4 +1,4 @@
-<section class="jumbotron text-center container" xmlns:th="http://www.thymeleaf.org">
+<section class="jumbotron text-center small-middle-container" xmlns:th="http://www.thymeleaf.org">
     <style>
         p{
             margin-bottom: 15px;
@@ -20,6 +20,7 @@
             <p>Не постои бараниот продукт</p>
         </th:block>
     </th:block>
+
     <ul>
 
         <div class="container mb-4">
@@ -45,18 +46,18 @@
                                 <td>
                                     <th:block sec:authorize="hasRole('ROLE_USER')">
                                         <form th:action="@{'/product-categories/{cat}/{id}' (id=${product.getId()}, cat=${category})}" th:method="GET">
-                                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-trash">Show Details</i></button>
+                                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-trash">Повеќе информации</i></button>
                                         </form>
                                     </th:block>
                                 </td>
                                 <td class="text-right">
                                     <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                                         <form th:action="@{'/product-categories/{cat}/delete/{id}' (id=${product.getId()}, cat=${category})}" th:method="DELETE">
-                                            <button type="submit" onclick="return confirm('Дали сте сигурни дека сакате да го избришете продуктот?');" class="btn btn-sm btn-danger"><i class="fa fa-trash">Delete</i></button>
+                                            <button type="submit" onclick="return confirm('Дали сте сигурни дека сакате да го избришете продуктот?');" class="btn btn-sm btn-danger"><i class="fa fa-trash">Избриши</i></button>
                                         </form>
                                     </th:block>
                                     <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-                                        <a th:href="@{'/product-categories/{cat}/edit-form/{id}' (id=${product.getId()}, cat=${category})}" class="btn btn-sm btn-info"><i class="fa fa-trash">Edit</i></a>
+                                        <a th:href="@{'/product-categories/{cat}/edit-form/{id}' (id=${product.getId()}, cat=${category})}" class="btn btn-sm btn-info"><i class="fa fa-trash">Промени</i></a>
                                     </th:block>
 <!--                                    <form th:action="@{'/cart/add-product/{id}' (id=${product.getId()})}" th:method="POST">-->
 <!--                                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-trash">Add product to cart</i></button>-->
@@ -71,7 +72,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
                             <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-                                <a th:href="@{'/product-categories/{cat}/add-form' (cat=${category})}" class="btn btn-block btn-dark">Add new product</a>
+                                <a th:href="@{'/product-categories/{cat}/add-form' (cat=${category})}" class="btn btn-block btn-dark">Додади нов продукт</a>
                             </th:block>
                         </div>
                     </div>

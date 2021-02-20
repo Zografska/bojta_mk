@@ -6,6 +6,12 @@
     .btn {
         margin: 5px;
     }
+
+     .small-middle-container{
+         margin: auto;
+         width: 80%;
+     }
+
 </style>
 <header class="text-black-50 mt-xl-5" xmlns:th="http://www.thymeleaf.org" >
     <nav class="navbar navbar-expand-lg navbar-light bg-light"  style="background-color: #a88d32;" >
@@ -28,8 +34,8 @@
             </ul>
 
             <form th:action="@{'/product-categories/search'}" th:method="get" class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" name="str" placeholder="Search..." aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="search" name="str" placeholder="Пребарај..." aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Пребарај</button>
             </form>
 
             <ul class="nav navbar-nav navbar-right">
