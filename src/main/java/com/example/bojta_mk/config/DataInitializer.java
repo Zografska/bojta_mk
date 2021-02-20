@@ -46,9 +46,9 @@ public class DataInitializer {
         dimensions2.add(dimension2);
         Shape shape2 = shapeService.create("rectangle", dimensions2);
         Post post = postService.create("Headline1","Hello this is the description for post1.\n" +
-                "So like what's new with you? You doing okay?");
+                "So like what's new with you? You doing okay?","nzm");
         Post post2 = postService.create("Headline2","Hello this is the description for post2.\n" +
-                "Post 1 really sucks lol");
+                "Post 1 really sucks lol","nzm");
         User admin =  this.userService.register("admin", "admin", "admin", "Jakov", "Mitrovski", "124343", Role.ROLE_ADMIN);
         User user = this.userService.register("jakovvmitrovski@gmail.com", "user", "user", "Jakov123", "Jakov123", "12345", Role.ROLE_USER);
         User user2 = this.userService.register("user", "user", "user", "Jakov123", "Jakov123", "12345", Role.ROLE_USER);

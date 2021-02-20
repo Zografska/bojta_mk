@@ -15,10 +15,12 @@ public class Post {
     @Column(columnDefinition = "text")
     @Type(type = "text")
     String description;
+    String image;
 
-    public Post(String headline, String description) {
+    public Post(String headline, String description, String image) {
         this.headline = headline;
         this.description = description;
+        this.image=image;
     }
 
     public Post() {

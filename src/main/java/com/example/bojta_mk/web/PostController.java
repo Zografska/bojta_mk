@@ -23,8 +23,9 @@ public class PostController {
     }
     @PostMapping
     public String PostCreatePostPage(@RequestParam String headline,
-                                     @RequestParam String description){
-        postService.create(headline,description);
+                                     @RequestParam String description,
+                                     @RequestParam String image){
+        postService.create(headline,description,image);
 
         return "redirect:/home";
     }

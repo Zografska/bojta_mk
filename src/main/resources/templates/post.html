@@ -6,6 +6,19 @@
     <h1>Додај статија</h1>
 </head>
 <body>
+<div class="row" th:if="${image==null}">
+    <div class="col-md-8 mx-auto">
+        <h2>Upload Image</h2>
+        <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
+        <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="file" name="file" class="form-control-file">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload Image</button>
+        </form>
+    </div>
+</div>
+<div th:if="${image!=null}">
     <form action="/post" method="POST" >
         <div class="form-group">
             <label for="headline">Поглавје</label>
@@ -26,7 +39,9 @@
                    placeholder="Enter description">
             </textarea>
         </div>
+        <input type="hidden" id="image" name="image" th:value="${image}">
         <input type="submit" name="Submit">
     </form>
+</div>
 </body>
 </section>
