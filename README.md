@@ -7,15 +7,11 @@ Tasks:
 - Prakjanje mail posle register - [jakov].
 - document download[j]
 - Prakjanje mail za order confirmation - [jakov].
-- Upload picture and [z]
-- podolg tekst vo post[z]
-- Logika za *orders - [zogra]
 
 - da se olesni navigacijata niz stranata (da se dodadat back kopcinja itn..) - [togetherrr]
 - Povrzeme so postgre baza [togetherrrr]
 
 [dali da se pravi sega]
-- upload na slika vo post?
 - linkovi za simnuvanje katalog - mislam deka e ednostavno samo ne mi raboteshe
 
 [ne sea]

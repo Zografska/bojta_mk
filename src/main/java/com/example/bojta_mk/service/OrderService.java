@@ -11,4 +11,8 @@ import java.util.List;
 public interface OrderService {
     Order findByShoppingCart(ShoppingCart shoppingCart);
     Order create(ShoppingCart shoppingCart, OrderStatus orderStatus);
+    List<Order> findAll();
+    Order changeStatus(Long id, OrderStatus status);
+    Order findById(Long id);
+    void delete(Long id);
 }

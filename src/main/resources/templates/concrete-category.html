@@ -31,18 +31,14 @@
                             <thead>
                             <tr>
                                 <th scope="col">ID </th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Shape</th>
-                                <th scope="col">Number of Dimensions</th>
+                                <th scope="col">Име на продукт</th>
+
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="product : ${products}">
                                 <td th:text="${product.getId()}"></td>
                                 <td th:text="${product.getName()}"></td>
-                                <td th:text="${product.getShape() != null}
-                                ? ${product.getShape().getName()} : 'No Shape'"></td>
-                                <td th:text="${product.getShape().getDimensions().size()}"></td>
                                 <td>
                                     <th:block sec:authorize="hasRole('ROLE_USER')">
                                         <form th:action="@{'/product-categories/{cat}/{id}' (id=${product.getId()}, cat=${category})}" th:method="GET">
@@ -59,9 +55,9 @@
                                     <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                                         <a th:href="@{'/product-categories/{cat}/edit-form/{id}' (id=${product.getId()}, cat=${category})}" class="btn btn-sm btn-info"><i class="fa fa-trash">Промени</i></a>
                                     </th:block>
-<!--                                    <form th:action="@{'/cart/add-product/{id}' (id=${product.getId()})}" th:method="POST">-->
-<!--                                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-trash">Add product to cart</i></button>-->
-<!--                                    </form>-->
+                                    <!--                                    <form th:action="@{'/cart/add-product/{id}' (id=${product.getId()})}" th:method="POST">-->
+                                    <!--                                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-trash">Add product to cart</i></button>-->
+                                    <!--                                    </form>-->
                                 </td>
                             </tr>
                             </tbody>
@@ -82,4 +78,4 @@
 
     </ul>
     </body>
-</section>>
+</section>

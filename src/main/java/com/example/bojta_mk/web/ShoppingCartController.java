@@ -71,7 +71,7 @@ public class ShoppingCartController {
 
             this.orderService.create(shoppingCart, OrderStatus.TO_COMPLETE);
             
-            return "redirect:/order-sent";
+            return "redirect:/order";
         }catch(RuntimeException e){
             return "redirect:/cart?error=" + e.getMessage();
         }

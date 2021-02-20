@@ -1,0 +1,38 @@
+<div xmlns:th="http://www.thymeleaf.org" class="small-middle-container">
+    <th:block>
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h3>Детали за продуктот</h3>
+            </div>
+        </section>
+
+        <div class="container">
+                <div class="col-sm">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">ID </th>
+                                <th scope="col">Име на продуктот </th>
+                                <th scope="col">Димензија </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="product : ${products}">
+                                <td th:text="${product.getId()}"></td>
+                                <td th:text="${product.product.getName()}"></td>
+                                <td th:text="${product.getDimension()}"></td>
+                                <td th:text="${order.getOrderStatus()}"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </th:block>
+
+</div>

@@ -1,7 +1,9 @@
 package com.example.bojta_mk.web;
 
 import com.example.bojta_mk.model.Order;
+import com.example.bojta_mk.model.OrderItem;
 import com.example.bojta_mk.model.ShoppingCart;
+import com.example.bojta_mk.model.enumerations.OrderStatus;
 import com.example.bojta_mk.service.MailService;
 import com.example.bojta_mk.service.OrderService;
 import com.example.bojta_mk.service.PdfGeneratorService;
@@ -9,16 +11,15 @@ import com.example.bojta_mk.service.ShoppingCartService;
 import com.itextpdf.text.DocumentException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
-@RequestMapping("/order-sent")
+@RequestMapping("/order")
 public class OrderController {
 
     private final OrderService orderService;
@@ -33,8 +34,8 @@ public class OrderController {
         this.mailService = mailService;
     }
 
-
-    public String getOrderSentPage(@RequestParam(required = false) String error, HttpServletRequest req, Model model){
+    @GetMapping
+    public String getOrderSentPage(@RequestParam(required = false) String error, HttpServletRequest req, Model model) {
 
         String username = req.getRemoteUser();
         ShoppingCart shoppingCart = this.shoppingCartService.getActiveShoppingCart(username);
@@ -51,10 +52,42 @@ public class OrderController {
             this.mailService.sendOrderMail(name, id);
             model.addAttribute("bodyContent", "order-sent");
             return "master";
-        }catch (FileNotFoundException | DocumentException e){
-            return "redirect:/order-sent?error=" + e.getMessage();
+        } catch (FileNotFoundException | DocumentException e) {
+            return "redirect:/order?error=" + e.getMessage();
         }
     }
 
-
+    @GetMapping("/page")
+    public String getOrdersPage(Model model) {
+        List<OrderStatus> orderStatusList = new ArrayList<>();
+        orderStatusList.add(OrderStatus.TO_COMPLETE);
+        orderStatusList.add(OrderStatus.COMPLETED);
+        orderStatusList.add(OrderStatus.TO_DELETE);
+        model.addAttribute("orders", orderService.findAll());
+        model.addAttribute("statuses", orderStatusList);
+        model.addAttribute("bodyContent", "orders");
+        return "master";
     }
+
+    @PostMapping("/change-status/{id}")
+    public String changeOrder(@PathVariable Long id, @RequestParam OrderStatus status) {
+        orderService.changeStatus(id, status);
+        return "redirect:/order/page";
+    }
+
+    @GetMapping("/details/{id}")
+    public String OrderDetials(@PathVariable Long id, Model model) {
+        Order order = orderService.findById(id);
+        List<OrderItem> items = order.getShoppingCart().getProductList();
+        model.addAttribute("order", order);
+        model.addAttribute("products", items);
+        model.addAttribute("bodyContent", "order-details");
+        return "master";
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String OrderDetials(@PathVariable Long id) {
+        orderService.delete(id);
+        return "redirect:/order/page";
+    }
+}
