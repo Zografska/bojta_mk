@@ -1,5 +1,8 @@
 <div class="small-middle-container" xmlns:th="http://www.thymeleaf.org">
-    <h1 th:if="${hasError}" th:text="${error}"></h1>
+    <div th:if="${hasError}" class="alert alert-danger" role="alert">
+        <strong th:text="${error}"></strong>
+    </div>
+
 
     <form class="form-signin mt-xl-5" method="post" action="/register">
         <h2 class="form-signin-heading">Регистрирај се</h2>

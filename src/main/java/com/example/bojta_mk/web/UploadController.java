@@ -1,9 +1,9 @@
 package com.example.bojta_mk.web;
 
+import com.example.bojta_mk.service.UploadService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,8 +18,11 @@ import java.nio.file.StandardCopyOption;
 @Controller
 @RequestMapping("/upload")
 public class UploadController {
+    private final UploadService uploadService;
 
-    private final String UPLOAD_DIR = "./uploads/";
+    public UploadController(UploadService uploadService) {
+        this.uploadService = uploadService;
+    }
 
     @PostMapping
     public String uploadFile(@RequestParam("file") MultipartFile file, RedirectAttributes attributes, Model model) {
@@ -29,23 +32,19 @@ public class UploadController {
             attributes.addFlashAttribute("message", "Please select a file to upload.");
             return "redirect:/";
         }
-
-        // normalize the file path
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-
+        String path="";
         // save the file on the local file system
         try {
-            Path path = Paths.get(UPLOAD_DIR + fileName);
-            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            path=uploadService.upload(file,attributes);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         // return success response
-        attributes.addFlashAttribute("message", "You successfully uploaded " + fileName + '!');
+        attributes.addFlashAttribute("message", "You successfully uploaded!");
 
         model.addAttribute("bodyContent", "post");
-        model.addAttribute("image", UPLOAD_DIR + fileName);
+        model.addAttribute("image", path);
         return "master.html";
     }
 
