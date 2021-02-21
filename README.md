@@ -2,8 +2,6 @@
 
 Tasks:
 
-
-- koga ima product u shopping cart na user i adminot saka da go izbrise, se narusuva referential integrity. Treba da go razmislime toa.[jakov]
 - Prakjanje mail posle register - [jakov].
 - document download[j]
 - Prakjanje mail za order confirmation - [jakov].

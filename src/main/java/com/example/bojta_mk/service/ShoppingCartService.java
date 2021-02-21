@@ -12,4 +12,5 @@ public interface ShoppingCartService {
     ShoppingCart addProductToShoppingCart(String username, Long orderItemId);
     ShoppingCart removeProductFromShoppingCart(String username, Long orderItemId);
     ShoppingCart deactivateConfirmedShoppingCart(Long id);
+    List<ShoppingCart> findAll();
 }

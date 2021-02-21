@@ -83,7 +83,7 @@ public class MailServiceImpl implements MailService {
 
             //create message
             String fileName = name + "Order" + id + ".pdf";
-            Message message = this.createMessage("aleksndra2@gmail.com", fileName);
+            Message message = this.createMessage("jakovvmitrovski@gmail.com", fileName);
 
             //send message
             Transport.send(message);

@@ -1,28 +1,32 @@
 package com.example.bojta_mk.web;
 
+import com.example.bojta_mk.model.OrderItem;
+import com.example.bojta_mk.model.ShoppingCart;
 import com.example.bojta_mk.model.enumerations.Category;
 import com.example.bojta_mk.model.Product;
 import com.example.bojta_mk.model.Shape;
-import com.example.bojta_mk.service.ProductService;
-import com.example.bojta_mk.service.ShapeService;
+import com.example.bojta_mk.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping("/product-categories")
 public class ProductController {
-    //TODO: Plan out Products main page
-    //TODO: Create mappings for different product categories
 
     private final ProductService productService;
     private final ShapeService shapeService;
+    private final ShoppingCartService shoppingCartService;
+    private final OrderItemService orderItemService;
 
-    public ProductController(ProductService productService, ShapeService shapeService) {
+    public ProductController(ProductService productService, ShapeService shapeService, ShoppingCartService shoppingCartService, OrderItemService orderItemService) {
         this.productService = productService;
         this.shapeService = shapeService;
+        this.shoppingCartService = shoppingCartService;
+        this.orderItemService = orderItemService;
     }
 
     @GetMapping
@@ -84,7 +88,6 @@ public class ProductController {
     @PostMapping("/add")
     public String saveProduct(@RequestParam String id,
                               @RequestParam String name,
-                              @RequestParam String description,
                               @RequestParam Category category,
                               @RequestParam String shape){
         Shape s = this.shapeService.findById(shape);
@@ -95,6 +98,20 @@ public class ProductController {
     @DeleteMapping("/{cat}/delete/{id}")
     public String deleteProduct(@PathVariable String cat,
                                 @PathVariable String id){
+        List<ShoppingCart> shoppingCarts = this.shoppingCartService.findAll();
+        List<Long> toDelete = new ArrayList<>();
+        for (ShoppingCart sh : shoppingCarts) {
+            List<OrderItem> newList = new ArrayList<>();
+            for (OrderItem o : sh.getProductList())
+                if (!o.getProduct().getId().equals(id)) {
+                    newList.add(o);
+                }else{
+                    toDelete.add(o.getId());
+                }
+            sh.setProductList(newList);
+        }
+
+        for (Long i : toDelete) this.orderItemService.deleteById(i);
         this.productService.deleteById(id);
         return "redirect:/product-categories/{cat}";
     }

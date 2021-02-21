@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ShoppingCartServiceImpl implements ShoppingCartService {
@@ -63,7 +64,15 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         ShoppingCart shoppingCart = this.getActiveShoppingCart(username);
         OrderItem orderItem = this.orderItemService.findById(orderItemId);
 
-        if (shoppingCart.getProductList().stream().anyMatch(x -> x.getId().equals(orderItemId))){
+        if (shoppingCart.getProductList()
+                .stream()
+                .anyMatch(x -> (x.getProduct()
+                        .getId()
+                        .equals(orderItem
+                                .getProduct()
+                                .getId())
+                        && x.getDimension()
+                        .equals(orderItem.getDimension())))){
             throw new OrderItemAlreadyInShoppingCart();
         }
 
@@ -86,6 +95,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         ShoppingCart shoppingCart = this.shoppingCartRepository.findById(id).orElseThrow(() -> new ShoppingCartNotFoundException(id));
         shoppingCart.setStatus(ShoppingCartStatus.INACTIVE);
         return this.shoppingCartRepository.save(shoppingCart);
+    }
+
+    @Override
+    public List<ShoppingCart> findAll() {
+        return this.shoppingCartRepository.findAll()
+                .stream()
+                .filter(x -> x.getStatus() == ShoppingCartStatus.ACTIVE)
+                .collect(Collectors.toList());
     }
 }
 
