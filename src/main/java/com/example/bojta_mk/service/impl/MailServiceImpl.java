@@ -1,14 +1,12 @@
 package com.example.bojta_mk.service.impl;
 
+import com.example.bojta_mk.model.User;
 import com.example.bojta_mk.service.MailService;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
-import javax.annotation.PostConstruct;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.io.File;
@@ -63,17 +61,6 @@ public class MailServiceImpl implements MailService {
         return message;
     }
 
-    private Message createContactMessage(String mailTo, String body) throws MessagingException {
-        Message message = new MimeMessage(session);
-        message.setFrom(new InternetAddress(username));
-        message.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse(mailTo));
-        message.setSubject("Прашање");
-        message.setText(body);
-        return message;
-    }
-
-
     @Override
     public void sendOrderMail(String name, Long id) {
 
@@ -97,6 +84,16 @@ public class MailServiceImpl implements MailService {
         }
     }
 
+    private Message createContactMessage(String mailTo, String body) throws MessagingException {
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));
+        message.setRecipients(Message.RecipientType.TO,
+                InternetAddress.parse(mailTo));
+        message.setSubject("Прашање");
+        message.setText(body);
+        return message;
+    }
+
     @Override
     public void sendQuestion(String body) {
 
@@ -106,6 +103,34 @@ public class MailServiceImpl implements MailService {
 
             //create message
             Message message = this.createContactMessage("aleksndra2@gmail.com", body);
+
+            //send message
+            Transport.send(message);
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Message createRegisterMessage(String mailTo,String name,String surname) throws MessagingException {
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress(username));
+        message.setRecipients(Message.RecipientType.TO,
+                InternetAddress.parse(mailTo));
+        message.setSubject("Успешна регистрација!");
+        message.setText("Почитувани"+name+surname+"\n"+
+                "Успешно се регистриравте на сајтот bojta-ing.com.mk");
+        return message;
+    }
+
+    @Override
+    public void sendRegisterConfirmation(String username,String name,String surname) {
+        try {
+            //set config and create session
+            setProperties();
+
+            //create message
+            Message message = this.createRegisterMessage(username,name,surname);
 
             //send message
             Transport.send(message);
