@@ -85,8 +85,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public ShoppingCart removeProductFromShoppingCart(String username, Long orderItemId) {
         ShoppingCart shoppingCart = this.getActiveShoppingCart(username);
         OrderItem orderItem = this.orderItemService.findById(orderItemId);
-
         shoppingCart.getProductList().remove(orderItem);
+        this.orderItemService.deleteById(orderItemId);
+
         return this.shoppingCartRepository.save(shoppingCart);
     }
 

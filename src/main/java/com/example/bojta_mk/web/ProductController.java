@@ -105,6 +105,7 @@ public class ProductController {
             for (OrderItem o : sh.getProductList())
                 if (!o.getProduct().getId().equals(id)) {
                     newList.add(o);
+                    System.out.println(o.getProduct().getId());
                 }else{
                     toDelete.add(o.getId());
                 }

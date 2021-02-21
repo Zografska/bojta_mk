@@ -4,7 +4,6 @@ Tasks:
 
 
 - Prakjanje mail posle register - [jakov].
-- document download[j]
 - Prakjanje mail za order confirmation - [jakov].
 
 - da se olesni navigacijata niz stranata (da se dodadat back kopcinja itn..) - [togetherrr]
