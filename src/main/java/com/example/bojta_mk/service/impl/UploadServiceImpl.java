@@ -14,7 +14,7 @@ import java.nio.file.StandardCopyOption;
 
 @Service
 public class UploadServiceImpl implements UploadService  {
-    private final String UPLOAD_DIR = "./uploads/";
+    private final String UPLOAD_DIR = "src/main/resources/static/uploads/";
     @Override
     public String upload(MultipartFile file, RedirectAttributes attributes) throws IOException {
 

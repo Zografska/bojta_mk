@@ -18,7 +18,7 @@ public class FetchFilesController {
 
     @GetMapping("/download/{fileName:.+}")
     public ResponseEntity downloadFileFromLocal(@PathVariable String fileName) {
-        Path path = Paths.get("C:\\Users\\38978\\IdeaProjects\\bojta_mk\\" + fileName); // tuka treba da se smeni patekata
+        Path path = Paths.get(fileName); // tuka treba da se smeni patekata
         Resource resource = null;
         try {
             resource = new UrlResource(path.toUri());
