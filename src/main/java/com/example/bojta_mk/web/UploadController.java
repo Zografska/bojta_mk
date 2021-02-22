@@ -45,7 +45,7 @@ public class UploadController {
 
         model.addAttribute("bodyContent", "post");
         model.addAttribute("image", path);
-        return "master.html";
+        return "master";
     }
 
 }

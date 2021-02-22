@@ -3,6 +3,7 @@ package com.example.bojta_mk.web;
 import com.example.bojta_mk.model.enumerations.Role;
 import com.example.bojta_mk.model.exeptions.PasswordsDoNotMatchException;
 import com.example.bojta_mk.model.exeptions.UsernameAlreadyExistsException;
+import com.example.bojta_mk.model.exeptions.UsernameMustBeAnEmailException;
 import com.example.bojta_mk.service.MailService;
 import com.example.bojta_mk.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -44,7 +45,7 @@ public class RegisterController {
             userService.register(username, password, repeatedPassword, name, surname, phone, Role.ROLE_USER);
             mailService.sendRegisterConfirmation(username, name, surname);
             return "redirect:/home";
-        }catch (IllegalArgumentException | UsernameAlreadyExistsException | PasswordsDoNotMatchException e)
+        }catch (IllegalArgumentException | UsernameAlreadyExistsException | PasswordsDoNotMatchException | UsernameMustBeAnEmailException e)
         {
             return "redirect:/register?error="+e.getMessage();
         }

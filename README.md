@@ -5,7 +5,6 @@ Tasks:
 - dropdown lista za navbar kategorii - [zogra]
 - kopceto za continue shopping - [zogra]
 - sliki - [jakov]
-- sredi za mail username - [jakov]
 - allow download yo non logged in ppl - [zogra]
 
 

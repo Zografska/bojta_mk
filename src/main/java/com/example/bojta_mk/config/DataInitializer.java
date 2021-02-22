@@ -49,9 +49,8 @@ public class DataInitializer {
                 "So like what's new with you? You doing okay?","nzm");
         Post post2 = postService.create("Headline2","Hello this is the description for post2.\n" +
                 "Post 1 really sucks lol","nzm");
-        User admin =  this.userService.register("admin", "admin", "admin", "Jakov", "Mitrovski", "124343", Role.ROLE_ADMIN);
-        User user = this.userService.register("jakovvmitrovski@gmail.com", "user", "user", "Jakov123", "Jakov123", "12345", Role.ROLE_USER);
-        User user2 = this.userService.register("user", "user", "user", "Jakov123", "Jakov123", "12345", Role.ROLE_USER);
+        User admin =  this.userService.register("admin@yahoo.com", "admin", "admin", "Jakov", "Mitrovski", "124343", Role.ROLE_ADMIN);
+        User user = this.userService.register("user@yahoo.com", "user", "user", "Jakov123", "Jakov123", "12345", Role.ROLE_USER);
         for (int i = 1; i < 6; i++) {
             productService.create("200."+i, Category.opasnost,shape,
                     "Opasnost na pat"+i);
