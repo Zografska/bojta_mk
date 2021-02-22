@@ -2,19 +2,18 @@
 
 Tasks:
 
+- dropdown lista za navbar kategorii - [zogra]
+- kopceto za continue shopping - [zogra]
+- sliki - [jakov]
+- sredi za mail username - [jakov]
+- allow download yo non logged in ppl - [zogra]
 
-- Prakjanje mail posle register - [jakov].
-- Prakjanje mail za order confirmation - [jakov].
-
-- da se olesni navigacijata niz stranata (da se dodadat back kopcinja itn..) - [togetherrr]
-- Povrzeme so postgre baza [togetherrrr]
-
-[dali da se pravi sega]
-- linkovi za simnuvanje katalog - mislam deka e ednostavno samo ne mi raboteshe
 
 [ne sea]
-Parsiranje eksel podatokot vo proektot - jakov
+- Parsiranje eksel podatokot vo proektot - jakov
+- Povrzeme so postgre baza [togetherrrr]
+- img na product
 
 -Logo na bojta
--Mesto na postovite
+
 
