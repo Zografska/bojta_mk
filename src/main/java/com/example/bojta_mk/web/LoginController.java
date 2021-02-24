@@ -1,6 +1,7 @@
 package com.example.bojta_mk.web;
 
 import com.example.bojta_mk.model.User;
+import com.example.bojta_mk.model.enumerations.Category;
 import com.example.bojta_mk.model.exeptions.InvalidUserCredentialsException;
 import com.example.bojta_mk.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ public class LoginController {
     @GetMapping
     public String getLoginPage(Model model){
         model.addAttribute("bodyContent", "login");
+        model.addAttribute("categories", Category.values());
         return "master.html";
     }
     @PostMapping

@@ -1,5 +1,6 @@
 package com.example.bojta_mk.web;
 
+import com.example.bojta_mk.model.enumerations.Category;
 import com.example.bojta_mk.service.UploadService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,6 +46,7 @@ public class UploadController {
 
         model.addAttribute("bodyContent", "post");
         model.addAttribute("image", path);
+        model.addAttribute("categories", Category.values());
         return "master";
     }
 

@@ -1,5 +1,6 @@
 package com.example.bojta_mk.web;
 
+import com.example.bojta_mk.model.enumerations.Category;
 import com.example.bojta_mk.model.enumerations.Role;
 import com.example.bojta_mk.model.exeptions.PasswordsDoNotMatchException;
 import com.example.bojta_mk.model.exeptions.UsernameAlreadyExistsException;
@@ -32,6 +33,7 @@ public class RegisterController {
         else  model.addAttribute("hasError",  false);
 
         model.addAttribute("bodyContent", "register");
+        model.addAttribute("categories", Category.values());
         return "master.html";
     }
     @PostMapping

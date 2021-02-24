@@ -3,6 +3,7 @@ package com.example.bojta_mk.web;
 import com.example.bojta_mk.model.Order;
 import com.example.bojta_mk.model.OrderItem;
 import com.example.bojta_mk.model.ShoppingCart;
+import com.example.bojta_mk.model.enumerations.Category;
 import com.example.bojta_mk.model.enumerations.OrderStatus;
 import com.example.bojta_mk.service.MailService;
 import com.example.bojta_mk.service.OrderService;
@@ -51,6 +52,7 @@ public class OrderController {
             pdfGeneratorService.init(order);
             this.mailService.sendOrderMail(name, id);
             model.addAttribute("bodyContent", "order-sent");
+            model.addAttribute("categories", Category.values());
             return "master";
         } catch (FileNotFoundException | DocumentException e) {
             return "redirect:/order?error=" + e.getMessage();
@@ -66,6 +68,7 @@ public class OrderController {
         model.addAttribute("orders", orderService.findAll());
         model.addAttribute("statuses", orderStatusList);
         model.addAttribute("bodyContent", "orders");
+        model.addAttribute("categories", Category.values());
         return "master";
     }
 
@@ -82,6 +85,7 @@ public class OrderController {
         model.addAttribute("order", order);
         model.addAttribute("products", items);
         model.addAttribute("bodyContent", "order-details");
+        model.addAttribute("categories", Category.values());
         return "master";
     }
 

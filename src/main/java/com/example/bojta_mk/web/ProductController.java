@@ -45,6 +45,7 @@ public class ProductController {
         model.addAttribute("category", cat);
         model.addAttribute("products", productsPerCategory);
 
+        model.addAttribute("categories", Category.values());
         return "master";
     }
 
@@ -82,6 +83,7 @@ public class ProductController {
         model.addAttribute("bodyContent", "details");
         model.addAttribute("category", cat);
         model.addAttribute("product", product);
+        model.addAttribute("categories", Category.values());
         return "master";
     }
 
@@ -123,6 +125,7 @@ public class ProductController {
         model.addAttribute("category", "all");
         model.addAttribute("products", products);
         model.addAttribute("search", true);
+        model.addAttribute("categories", Category.values());
         return "master.html";
     }
 }

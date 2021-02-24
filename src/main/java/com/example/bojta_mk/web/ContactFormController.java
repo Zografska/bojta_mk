@@ -1,6 +1,7 @@
 package com.example.bojta_mk.web;
 
 import com.example.bojta_mk.model.User;
+import com.example.bojta_mk.model.enumerations.Category;
 import com.example.bojta_mk.service.MailService;
 import com.example.bojta_mk.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,7 @@ public class ContactFormController {
 
         this.mailService.sendQuestion(message);
         model.addAttribute("bodyContent", "proba");
+        model.addAttribute("categories", Category.values());
         return "master.html";
     }
     public String getMessage(User user, String question){

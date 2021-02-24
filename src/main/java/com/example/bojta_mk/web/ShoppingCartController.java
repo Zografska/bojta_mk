@@ -1,6 +1,7 @@
 package com.example.bojta_mk.web;
 
 import com.example.bojta_mk.model.*;
+import com.example.bojta_mk.model.enumerations.Category;
 import com.example.bojta_mk.model.enumerations.OrderStatus;
 import com.example.bojta_mk.service.*;
 import org.springframework.stereotype.Controller;
@@ -43,7 +44,7 @@ public class ShoppingCartController {
         model.addAttribute("orderItems", this.shoppingCartService.listAllProductsInShoppingCart(shoppingCart.getId()));
         model.addAttribute("bodyContent", "shopping-cart");
         model.addAttribute("username", username);
-
+        model.addAttribute("categories", Category.values());
         return "master";
     }
 

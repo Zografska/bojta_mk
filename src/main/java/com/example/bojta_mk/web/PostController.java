@@ -1,6 +1,7 @@
 package com.example.bojta_mk.web;
 
 import com.example.bojta_mk.model.Post;
+import com.example.bojta_mk.model.enumerations.Category;
 import com.example.bojta_mk.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ public class PostController {
     public String GetCreatePostPage(Model model)
     {
         model.addAttribute("bodyContent","post");
+        model.addAttribute("categories", Category.values());
         return "master.html";
     }
     @PostMapping
@@ -41,6 +43,7 @@ public class PostController {
         Post post = postService.findPost(id);
         model.addAttribute("post",post);
         model.addAttribute("bodyContent","concrete-post");
+        model.addAttribute("categories", Category.values());
         return "master.html";
     }
 }
