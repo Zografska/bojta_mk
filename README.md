@@ -1,11 +1,7 @@
 # bojta_mk
 
 Tasks:
-
-- dropdown lista za navbar kategorii - [zogra]
-- kopceto za continue shopping - [zogra]
 - sliki - [jakov]
-- allow download yo non logged in ppl - [zogra]
 
 
 [ne sea]
