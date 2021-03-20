@@ -22,6 +22,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post create(String headline, String description,String image) {
+        image = image.substring(25); // Removes part of absolute path
         return postRepository.save(new Post(headline,description,image));
     }
 

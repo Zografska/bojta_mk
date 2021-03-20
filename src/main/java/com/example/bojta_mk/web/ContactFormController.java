@@ -30,7 +30,7 @@ public class ContactFormController {
         String message = getMessage(user,question);
 
         this.mailService.sendQuestion(message);
-        model.addAttribute("bodyContent", "proba");
+        model.addAttribute("bodyContent", "question-sent");
         model.addAttribute("categories", Category.values());
         return "master.html";
     }

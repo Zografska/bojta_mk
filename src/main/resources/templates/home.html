@@ -18,17 +18,16 @@
 <div class="container">
     <div class="row" th:each="post:${posts}">
         <div class="col-sm" >
-            <img src="/uploads/bojta.jpg" alt="bojta">
-            <img src="https://i.insider.com/5c5dd439dde867479d106cc2?width=1100&format=jpeg&auto=webp" height="205" width="205" alt="img"/>
+            <img th:src="@{${post.image}}"  height="205" width="300">
+            <p><a th:href="@{'/post/details/{id}' (id=${post.getId()})}">Прикажи цела статија...</a></p>
         </div>
         <div class="col-sm post">
             <h5 th:text="${post.headline}"></h5>
 
             <p  class="text-left" th:text="${post.description}">
             </p>
-            <p><a th:href="@{'/post/details/{id}' (id=${post.getId()})}">Прикажи цела статија...</a></p>
-<!-- TODO: Add dots if description is too long
-<th:block th:if="*{#strings.length(post.description)>50}" th:text="..."></th:block>-->
+            <br>
+
         </div>
         <div class="col-sm" sec:authorize="hasRole('ROLE_ADMIN')">
                 <form th:action="@{'/post/delete/{id}' (id=${post.id})}"

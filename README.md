@@ -1,7 +1,7 @@
 # bojta_mk
 
 Tasks:
-- sliki - [jakov]
+
 
 
 [ne sea]

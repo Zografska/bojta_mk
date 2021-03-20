@@ -9,11 +9,7 @@
 <body>
     <h3 class="text-center"><th:block th:text="${post.headline}"></th:block></h3>
 <div class="row">
-    <div class="col-sm">
-<!--
-TODO: Make this work :)
-<img th:src="@{post.image}" height="400" width="400" alt="img"/>
--->
+    <div class="col-sm"><img th:src="@{${post.image}}"  height="250" width="350">
     </div>
     <div class="col-sm">
         <p th:text="${post.description}"></p>
